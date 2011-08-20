@@ -15,26 +15,20 @@ public abstract class AjaxRadio<T> extends Radio<T> {
 
 	public AjaxRadio(String id, IModel<T> model) {
 		super(id, model);
+		addAjaxBehavior();
 		setOutputMarkupId(true);
-		setupAjax();
 	}
 	
-	 private void setupAjax() {
-
+	 private void addAjaxBehavior() {
         add(new AjaxEventBehavior("onclick") {
-
              private static final long serialVersionUID = 1L;
-
              protected void onEvent(final AjaxRequestTarget target) {
-
                  RadioGroup<?> radioGroup = getEnclosingRadioGroup();
                  radioGroup.processInput();
                  onAjaxEvent(target);
-
              }
             
 			protected final CharSequence getEventHandler() {
-
                  return generateCallbackScript(new AppendingStringBuffer("wicketAjaxPost('")
                                                      .append(getCallbackUrl())
                                                      .append("', wicketSerialize(Wicket.$('")
