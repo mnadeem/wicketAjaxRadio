@@ -27,7 +27,7 @@ public class HomePage extends WebPage {
 
 			@Override
 			protected void onRadioSelect(AjaxRequestTarget target, ValueMap newSelection) {
-				info("You have selected " + newSelection);
+				info("You have selected " + newSelection.getString("name"));
 				target.addComponent(feedbackPanel);				
 			}
     		
